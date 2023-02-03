@@ -1,1 +1,2 @@
 # chatGPT
+- `npm run dev`
