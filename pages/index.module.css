@@ -65,3 +65,8 @@
   font-weight: bold;
   margin-top: 40px;
 }
+
+.imageResponse {
+  margin: 1em;
+  padding: 1em;
+}

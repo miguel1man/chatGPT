@@ -74,9 +74,9 @@ export default function Home() {
           <input type="submit" value="Reacciona" />
         </form>
         <div className={styles.result}>{result}</div>
-        <img src={urlImage1} alt=' ' />
-        <img src={urlImage2} alt=' ' />
-        <img src={urlImage3} alt=' ' />
+        {urlImage1 && <img className="imageResponse" src={urlImage1} alt='Primera respuesta de chatGPT' />}
+        {urlImage2 && <img className="imageResponse" src={urlImage2} alt='Segunda respuesta de chatGPT' />}
+        {urlImage3 && <img className="imageResponse" src={urlImage3} alt='Tercera respuesta de chatGPT' />}
       </main>
     </div>
   );
