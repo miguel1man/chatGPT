@@ -30,9 +30,8 @@ export default function Home() {
       SPLIT_RESPONSE = data.result.split(/[\s,]+/).filter(Boolean);
       setAnimalInput("");
 
-      console.log(SPLIT_RESPONSE.join("+"));
       const joinResponse = SPLIT_RESPONSE.join("+");
-      const PREFIX_IMAGE_URL = `http://api.giphy.com/v1/gifs/search?q=${joinResponse}&api_key=y3hnhA4Cp8ZGBCg5fUJw0AozF9KsPvex&limit=3`;
+      const PREFIX_IMAGE_URL = `https://api.giphy.com/v1/gifs/search?q=${joinResponse}&api_key=y3hnhA4Cp8ZGBCg5fUJw0AozF9KsPvex&limit=3`;
 
       fetch(PREFIX_IMAGE_URL)
         .then(res => res.json())
@@ -42,9 +41,9 @@ export default function Home() {
           SeturlImage2(responses.data[1].images.fixed_height.url);
           SeturlImage3(responses.data[2].images.fixed_height.url);
         })
-        .catch(error => {
-          console.error(error);
-          alert(error.message);
+        .catch(e => {
+          console.error(e);
+          alert(e.message);
         });
 
     } catch(error) {

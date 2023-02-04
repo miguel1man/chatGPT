@@ -51,8 +51,7 @@ export default async function (req, res) {
 function generatePrompt(animal) {
   const iaResponse = animal;
   return `
-  Resume este texto: "${iaResponse}" en 3 emociones. 
-  Las 3 emociones serán utilizadas para buscar en una base de datos, por lo que debes utilizar palabras optimizadas para la búsqueda de gifs.
-  Omite las comas y puntos en tu respuesta.
-  Es muy importante que solamente tu respuesta contengo 3 emocionas, no agregues ninguna palabra más.`;
+  Si una persona lee este texto: "${iaResponse}", ¿Cómo reaccionaría esa persona?
+  Responde con 3 emociones, las cuales serán utilizadas para buscar en una base de datos, por lo que debes utilizar palabras optimizadas para la búsqueda de gifs.
+  Es muy importante que solamente tu respuesta solo contenga 3 emociones, no agregues ninguna palabra más.`;
 }
