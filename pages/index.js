@@ -1,10 +1,14 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import styles from "./index.module.css";
 
 export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
+  const [urlImage1, SeturlImage1] = useState();
+  const [urlImage2, SeturlImage2] = useState();
+  const [urlImage3, SeturlImage3] = useState();
+  let SPLIT_RESPONSE;
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -23,7 +27,21 @@ export default function Home() {
       }
 
       setResult(data.result);
+      SPLIT_RESPONSE = data.result.split(/[\s,]+/).filter(Boolean);
       setAnimalInput("");
+
+      console.log(SPLIT_RESPONSE);
+      const PREFIX_IMAGE_URL = `http://api.giphy.com/v1/gifs/search?q=${SPLIT_RESPONSE}&api_key=y3hnhA4Cp8ZGBCg5fUJw0AozF9KsPvex&limit=3`;
+      
+      fetch(PREFIX_IMAGE_URL)
+        .then(res => res.json())
+        .then(response => {
+          const { url } = response.data[0].images.fixed_height;
+          SeturlImage1(url);
+          SeturlImage2(response.data[1].images.fixed_height.url);
+          SeturlImage3(response.data[2].images.fixed_height.url);
+        })
+
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -34,24 +52,27 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>GPT Resume</title>
+        <title>GPT Reacciona</title>
         <link rel="icon" href="/dog.png" />
       </Head>
 
       <main className={styles.main}>
         <img src="/dog.png" className={styles.icon} />
-        <h3>Resume en 2 palabras...</h3>
+        <h3>Escribe...</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
             name="animal"
-            placeholder="Texto a resumir"
+            placeholder="... Y chatGPT reaccionará"
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
-          <input type="submit" value="Resumélo" />
+          <input type="submit" value="Reacciona" />
         </form>
         <div className={styles.result}>{result}</div>
+        <img src={urlImage1} alt=' ' />
+        <img src={urlImage2} alt=' ' />
+        <img src={urlImage3} alt=' ' />
       </main>
     </div>
   );

@@ -49,6 +49,10 @@ export default async function (req, res) {
 }
 
 function generatePrompt(animal) {
-  const capitalizedAnimal = animal;
-  return `Resume este texto: "${capitalizedAnimal}" en 2 emociones. (omite las comas y puntos en tu respuesta. Si la palabra tiene una tilde, escribe la vocal sin una tilde)`;
+  const iaResponse = animal;
+  return `
+  Resume este texto: "${iaResponse}" en 3 emociones. 
+  Las 3 emociones serán utilizadas para buscar en una base de datos, por lo que debes utilizar palabras optimizadas para la búsqueda de gifs.
+  Omite las comas y puntos en tu respuesta.
+  Es muy importante que solamente tu respuesta contengo 3 emocionas, no agregues ninguna palabra más.`;
 }
