@@ -30,8 +30,9 @@ export default function Home() {
       SPLIT_RESPONSE = data.result.split(/[\s,]+/).filter(Boolean);
       setAnimalInput("");
 
-      console.log(SPLIT_RESPONSE);
-      const PREFIX_IMAGE_URL = `http://api.giphy.com/v1/gifs/search?q=${SPLIT_RESPONSE}&api_key=y3hnhA4Cp8ZGBCg5fUJw0AozF9KsPvex&limit=3`;
+      console.log(SPLIT_RESPONSE.join("+"));
+      const joinResponse = SPLIT_RESPONSE.join("+");
+      const PREFIX_IMAGE_URL = `http://api.giphy.com/v1/gifs/search?q=${joinResponse}&api_key=y3hnhA4Cp8ZGBCg5fUJw0AozF9KsPvex&limit=3`;
 
       fetch(PREFIX_IMAGE_URL)
         .then(res => res.json())
