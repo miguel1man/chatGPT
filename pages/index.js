@@ -32,15 +32,19 @@ export default function Home() {
 
       console.log(SPLIT_RESPONSE);
       const PREFIX_IMAGE_URL = `http://api.giphy.com/v1/gifs/search?q=${SPLIT_RESPONSE}&api_key=y3hnhA4Cp8ZGBCg5fUJw0AozF9KsPvex&limit=3`;
-      
+
       fetch(PREFIX_IMAGE_URL)
         .then(res => res.json())
-        .then(response => {
-          const { url } = response.data[0].images.fixed_height;
+        .then(responses => {
+          const { url } = responses.data[0].images.fixed_height;
           SeturlImage1(url);
-          SeturlImage2(response.data[1].images.fixed_height.url);
-          SeturlImage3(response.data[2].images.fixed_height.url);
+          SeturlImage2(responses.data[1].images.fixed_height.url);
+          SeturlImage3(responses.data[2].images.fixed_height.url);
         })
+        .catch(error => {
+          console.error(error);
+          alert(error.message);
+        });
 
     } catch(error) {
       // Consider implementing your own error handling logic here
@@ -53,11 +57,11 @@ export default function Home() {
     <div>
       <Head>
         <title>GPT Reacciona</title>
-        <link rel="icon" href="/dog.png" />
+        <link rel="icon" href="/bot.png" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
+        <img src="/bot.png" className={styles.icon} />
         <h3>Escribe...</h3>
         <form onSubmit={onSubmit}>
           <input
