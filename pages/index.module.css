@@ -63,7 +63,8 @@
 }
 .main .result {
   font-weight: bold;
-  margin-top: 40px;
+  margin-top: 0em;
+  margin-bottom: 2em;
 }
 
 .imageResponse {

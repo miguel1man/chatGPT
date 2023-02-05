@@ -8,10 +8,14 @@ export default function Home() {
 
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const [showInputValue, setShowInputValue ] = useState(false);
   const [urlImage1, SeturlImage1] = useState();
   const [urlImage2, SeturlImage2] = useState();
   const [urlImage3, SeturlImage3] = useState();
-  let SPLIT_RESPONSE;
+  const [showImages, setShowImages] = useState(false);
+
+  let splitResponse;
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -30,10 +34,10 @@ export default function Home() {
       }
 
       setResult(data.result);
-      SPLIT_RESPONSE = data.result.split(/[\s,]+/).filter(Boolean);
+      splitResponse = data.result.split(/[\s,]+/).filter(Boolean);
       setAnimalInput("");
 
-      const joinResponse = SPLIT_RESPONSE.join("+");
+      const joinResponse = splitResponse.join("+");
       const PREFIX_IMAGE_URL = `https://api.giphy.com/v1/gifs/search?q=${joinResponse}&api_key=${giphyApi}&limit=3`;
 
       fetch(PREFIX_IMAGE_URL)
@@ -42,6 +46,7 @@ export default function Home() {
           SeturlImage1(res.data[0].images.fixed_height.url);
           SeturlImage2(res.data[1].images.fixed_height.url);
           SeturlImage3(res.data[2].images.fixed_height.url);
+          setShowImages(true);
         })
         .catch(e => {
           console.error(e);
@@ -70,15 +75,21 @@ export default function Home() {
             name="animal"
             placeholder="... y chatGPT reaccionará"
             value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
+            onChange={(e) => {
+              setAnimalInput(e.target.value);
+            }}
           />
-          <input type="submit" value="Reaccionar" />
+          <input type="submit" value="Reaccionar" onClick={() => {
+            setShowImages(false);
+            setInputValue(animalInput)
+            setShowInputValue(true);
+          }} />
         </form>
-        <div className={styles.result}>{result}</div>
-        
-        {urlImage1 && <img className="imageResponse" src={urlImage1} alt='Primera respuesta de chatGPT' />}
-        {urlImage2 && <img className="imageResponse" src={urlImage2} alt='Segunda respuesta de chatGPT' />}
-        {urlImage3 && <img className="imageResponse" src={urlImage3} alt='Tercera respuesta de chatGPT' />}
+        {showInputValue && <p>Situación: {inputValue}</p>}
+        {result && <div className={styles.result}>Reacción: {result}</div>}
+        {showImages && urlImage1 && <img className="imageResponse" src={urlImage1} alt='Primera respuesta de chatGPT' />}
+        {showImages && urlImage2 && <img className="imageResponse" src={urlImage2} alt='Segunda respuesta de chatGPT' />}
+        {showImages && urlImage3 && <img className="imageResponse" src={urlImage3} alt='Tercera respuesta de chatGPT' />}
       </main>
     </div>
   );
