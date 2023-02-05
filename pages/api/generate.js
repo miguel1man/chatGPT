@@ -48,12 +48,14 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(animal) {
-  const iaResponse = animal;
+function generatePrompt(fraseEscrita) {
+  const iaResponse = fraseEscrita;
   return `
-  Resume esta frase "${iaResponse}" con las siguientes instrucciones:
+  En base a esta frase "${iaResponse}" escoge unas palabras clave que serán utilizadas para buscar gifs graciosos como reacción a dicha frase.
+  Sigue estas instrucciones para tu respuesta:
   - Escribe de 3 a 5 palabras.
   - Escribe al menos 1 verbo, 1 sustantivo y 1 verbo.
   - El resumen debe incluir únicamente palabras clave optimizadas para búsqueda.
-  - No escribas conjunciones, ni tampoco hashtags (#).`;
+  - No escribas conjunciones, ni tampoco hashtags (#).
+  - No escribas "palabras clave".`;
 }

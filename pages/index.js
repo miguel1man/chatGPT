@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import styles from "./index.module.css";
 
 const giphyApi = process.env.NEXT_PUBLIC_GIPHY_API_KEY;
