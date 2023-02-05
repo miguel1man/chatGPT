@@ -2,7 +2,10 @@ import Head from "next/head";
 import { useEffect, useLayoutEffect, useState } from "react";
 import styles from "./index.module.css";
 
+const giphyApi = process.env.NEXT_PUBLIC_GIPHY_API_KEY;
+
 export default function Home() {
+
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
   const [urlImage1, SeturlImage1] = useState();
@@ -31,15 +34,14 @@ export default function Home() {
       setAnimalInput("");
 
       const joinResponse = SPLIT_RESPONSE.join("+");
-      const PREFIX_IMAGE_URL = `https://api.giphy.com/v1/gifs/search?q=${joinResponse}&api_key=y3hnhA4Cp8ZGBCg5fUJw0AozF9KsPvex&limit=3`;
+      const PREFIX_IMAGE_URL = `https://api.giphy.com/v1/gifs/search?q=${joinResponse}&api_key=${giphyApi}&limit=3`;
 
       fetch(PREFIX_IMAGE_URL)
-        .then(res => res.json())
-        .then(responses => {
-          const { url } = responses.data[0].images.fixed_height;
-          SeturlImage1(url);
-          SeturlImage2(responses.data[1].images.fixed_height.url);
-          SeturlImage3(responses.data[2].images.fixed_height.url);
+        .then(response => response.json())
+        .then(res => {
+          SeturlImage1(res.data[0].images.fixed_height.url);
+          SeturlImage2(res.data[1].images.fixed_height.url);
+          SeturlImage3(res.data[2].images.fixed_height.url);
         })
         .catch(e => {
           console.error(e);
@@ -47,7 +49,6 @@ export default function Home() {
         });
 
     } catch(error) {
-      // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
     }
@@ -67,13 +68,14 @@ export default function Home() {
           <input
             type="text"
             name="animal"
-            placeholder="... Y chatGPT reaccionará"
+            placeholder="... y chatGPT reaccionará"
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
-          <input type="submit" value="Reacciona" />
+          <input type="submit" value="Reaccionar" />
         </form>
         <div className={styles.result}>{result}</div>
+        
         {urlImage1 && <img className="imageResponse" src={urlImage1} alt='Primera respuesta de chatGPT' />}
         {urlImage2 && <img className="imageResponse" src={urlImage2} alt='Segunda respuesta de chatGPT' />}
         {urlImage3 && <img className="imageResponse" src={urlImage3} alt='Tercera respuesta de chatGPT' />}

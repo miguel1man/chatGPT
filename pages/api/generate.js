@@ -19,7 +19,7 @@ export default async function (req, res) {
   if (animal.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid animal",
+        message: "Texto inválido.",
       }
     });
     return;
@@ -51,7 +51,9 @@ export default async function (req, res) {
 function generatePrompt(animal) {
   const iaResponse = animal;
   return `
-  Si una persona lee este texto: "${iaResponse}", ¿Cómo reaccionaría esa persona?
-  Responde con 3 emociones, las cuales serán utilizadas para buscar en una base de datos, por lo que debes utilizar palabras optimizadas para la búsqueda de gifs.
-  Es muy importante que solamente tu respuesta solo contenga 3 emociones, no agregues ninguna palabra más.`;
+  Resume esta frase "${iaResponse}" con las siguientes instrucciones:
+  - Escribe de 3 a 5 palabras.
+  - Escribe al menos 1 verbo, 1 sustantivo y 1 verbo.
+  - El resumen debe incluir únicamente palabras clave optimizadas para búsqueda.
+  - No escribas conjunciones, ni tampoco hashtags (#).`;
 }
