@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "../index.module.css";
+import Header from "../components/Header";
 
 const giphyApi = process.env.NEXT_PUBLIC_GIPHY_API_KEY;
 
@@ -64,14 +65,8 @@ export default function Home() {
 
   return (
     <div>
-      <Head>
-        <title>GPT Reacciona</title>
-        <link rel="icon" href="/bot.png" />
-      </Head>
-
+      <Header />
       <main className={styles.main}>
-        <img src="/bot.png" className={styles.icon} />
-        <h3>Escribe...</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
