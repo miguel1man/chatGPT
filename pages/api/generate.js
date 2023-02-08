@@ -48,14 +48,14 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(fraseEscrita) {
-  const iaResponse = fraseEscrita;
+function generatePrompt(writtenPhrase) {
+  const iaResponse = writtenPhrase;
   return `
-  En base a esta frase "${iaResponse}" escoge palabras clave que serán utilizadas para buscar gifs graciosos para reaccionar a dicha frase.
-  Sigue al pie de la letra las siguientes instrucciones para escribir tu respuesta:
-  - Escribe de 3 a 5 palabras.
-  - Escribe al menos una emoción.
-  - Tu respuesta debe contener únicamente palabras clave optimizadas para búsqueda de gifs graciosos.
-  - No escribas conjunciones, ni tampoco hashtags (#).
-  - En tu respuesta no puedes escoger las palabras "Risa", "risas", "ríe", "reír", "carcajadas", "verbo", "emoción", "sustantivo" ni "palabras clave".`;
+  Choose keywords based on the following sentence "${iaResponse}" to search for funny gifs to react to the said phrase.
+  - Write 3 to 5 words.
+  - Include at least one emotion.
+  - Your response should only contain keywords optimized for funny gif search.
+  - Do not include conjunctions or hashtags (#).
+  - You cannot choose the words "Laughter", "Laughing", "Laugh", "Giggle", "Giggles", "Verb", "Emotion", "Noun", or "Keywords" in your response.
+  - Write your answer in english only.`;
 }

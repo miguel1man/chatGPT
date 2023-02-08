@@ -35,6 +35,7 @@ export default function Home() {
 
       setResult(data.result);
       splitResponse = data.result.split(/[\s,]+/).filter(Boolean);
+      console.log(splitResponse);
       setAnimalInput("");
 
       const joinResponse = splitResponse.join("+");
@@ -52,6 +53,8 @@ export default function Home() {
           console.error(e);
           alert(e.message);
         });
+      
+      console.log(result);
 
     } catch(error) {
       console.error(error);
@@ -86,7 +89,6 @@ export default function Home() {
           }} />
         </form>
         {showInputValue && <p>Situación: {inputValue}</p>}
-        {result && <div className={styles.result}>Reacción: {result}</div>}
         {showImages && urlImage1 && <img className="imageResponse" src={urlImage1} alt='Primera respuesta de chatGPT' />}
         {showImages && urlImage2 && <img className="imageResponse" src={urlImage2} alt='Segunda respuesta de chatGPT' />}
         {showImages && urlImage3 && <img className="imageResponse" src={urlImage3} alt='Tercera respuesta de chatGPT' />}
