@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "../index.module.css";
 import Title from "./Title";
-import { fetchImages } from './giphy';
 
 const giphyApi = process.env.NEXT_PUBLIC_GIPHY_API_KEY;
 
@@ -39,10 +38,22 @@ export default function App() {
       setAnimalInput("");
 
       const joinResponse = splitResponse.join("+");
+      const PREFIX_IMAGE_URL = `https://api.giphy.com/v1/gifs/search?q=${joinResponse}&api_key=${giphyApi}&limit=3`;
 
-      await fetchImages(joinResponse, SeturlImage1, SeturlImage2, SeturlImage3);
-
-      setShowImages(true);
+      fetch(PREFIX_IMAGE_URL)
+        .then(response => response.json())
+        .then(res => {
+          SeturlImage1(res.data[0].images.fixed_height.url);
+          SeturlImage2(res.data[1].images.fixed_height.url);
+          SeturlImage3(res.data[2].images.fixed_height.url);
+          setShowImages(true);
+        })
+        .catch(e => {
+          console.error(e);
+          alert(e.message);
+        });
+      
+      console.log(result);
 
     } catch(error) {
       console.error(error);
@@ -71,9 +82,9 @@ export default function App() {
           }} />
         </form>
         {showInputValue && <p>Situación: {inputValue}</p>}
-        {showImages && urlImage1 && <img src={urlImage1} alt='img1' />}
-        {showImages && urlImage2 && <img src={urlImage2} alt='img2' />}
-        {showImages && urlImage3 && <img src={urlImage3} alt='img3' />}
+        {showImages && urlImage1 && <img className="imageResponse" src={urlImage1} alt='Primera respuesta de chatGPT' />}
+        {showImages && urlImage2 && <img className="imageResponse" src={urlImage2} alt='Segunda respuesta de chatGPT' />}
+        {showImages && urlImage3 && <img className="imageResponse" src={urlImage3} alt='Tercera respuesta de chatGPT' />}
       </main>
     </div>
   );
