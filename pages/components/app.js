@@ -1,7 +1,6 @@
-import Head from "next/head";
 import { useState } from "react";
 import styles from "../index.module.css";
-import Title from "./title";
+import Title from "./title.js";
 
 const giphyApi = process.env.NEXT_PUBLIC_GIPHY_API_KEY;
 
