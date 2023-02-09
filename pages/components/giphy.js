@@ -1,3 +1,5 @@
+import React from 'react';
+
 const giphyApi = process.env.NEXT_PUBLIC_GIPHY_API_KEY;
 
 export async function fetchImages(joinResponse, SeturlImage1, SeturlImage2, SeturlImage3) {
