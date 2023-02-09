@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "../index.module.css";
-import Header from "../components/Header";
+import Title from "./title";
 
 const giphyApi = process.env.NEXT_PUBLIC_GIPHY_API_KEY;
 
-export default function Home() {
+export default function App() {
 
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
@@ -65,7 +65,7 @@ export default function Home() {
 
   return (
     <div>
-      <Header />
+      <Title />
       <main className={styles.main}>
         <form onSubmit={onSubmit}>
           <input

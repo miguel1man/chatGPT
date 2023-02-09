@@ -1,8 +1,8 @@
 import Head from "next/head";
-import styles from "./header.module.css";
+import styles from "./title.module.css";
 import { useState } from "react";
 
-export default function Header() {
+export default function Title() {
     return (
         <>
             <Head>
