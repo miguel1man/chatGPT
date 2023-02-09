@@ -8,10 +8,10 @@ export default function Title() {
                 <title>GPT Reacciona</title>
                 <link rel="icon" href="/bot.png" />
             </Head>
-            <div className={styles.main}>
+            <header className={styles.title}>
                 <img src="/bot.png" className={styles.icon} />
-                <h3>Escribe...</h3>
-            </div>
+                <h1>Escribe...</h1>
+            </header>
         </>
     )
 }
