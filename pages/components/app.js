@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../index.module.css";
-import Title from "./title";
+import Title from "./Title";
 
 const giphyApi = process.env.NEXT_PUBLIC_GIPHY_API_KEY;
 
@@ -35,7 +35,6 @@ export default function App() {
 
       setResult(data.result);
       splitResponse = data.result.split(/[\s,]+/).filter(Boolean);
-      console.log(splitResponse);
       setAnimalInput("");
 
       const joinResponse = splitResponse.join("+");
