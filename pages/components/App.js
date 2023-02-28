@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../index.module.css";
 import Title from "./Title";
+import ImageResponse from "./ImageResponse";
 
 const giphyApi = process.env.NEXT_PUBLIC_GIPHY_API_KEY;
 
@@ -82,9 +83,7 @@ export default function App() {
           }} />
         </form>
         {showInputValue && <p>Situación: {inputValue}</p>}
-        {showImages && urlImage1 && <img className="imageResponse" src={urlImage1} alt='Primera respuesta de chatGPT' />}
-        {showImages && urlImage2 && <img className="imageResponse" src={urlImage2} alt='Segunda respuesta de chatGPT' />}
-        {showImages && urlImage3 && <img className="imageResponse" src={urlImage3} alt='Tercera respuesta de chatGPT' />}
+        {showImages && <ImageResponse urlImage1={urlImage1} urlImage2={urlImage2} urlImage3={urlImage3} />}
       </main>
     </div>
   );
