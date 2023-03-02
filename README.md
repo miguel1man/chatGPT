@@ -1,11 +1,10 @@
 ## GPT reaction with gifs
 
-<div align="center">
 ![Badge](https://img.shields.io/badge/React-18.2.0-blue)
 ![Badge](https://img.shields.io/badge/Next-13.1.1-blueviolet)
 ![Badge](https://img.shields.io/badge/OpenAI-3.1.0-orange)
 ![Badge](https://img.shields.io/badge/Node-%3E%3D14.6.0-green)
-</div>
+
 
 Write something and Chat GPT will react using gifs!
 
@@ -28,9 +27,9 @@ https://gptreacciona.vercel.app/
 - OpenAI 3.1.0
 - Node >=14.6.0
 
-## Config
+## Prompt config
 - Path `pages/api/generate.js`
-- Update the function:
+- Update this function to give commands to the AI:
 ```js
 function generatePrompt(writtenPhrase) {
   const iaResponse = writtenPhrase;
